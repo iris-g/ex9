@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ex9">
+
+    <!-- ADDED IN LAB9 -->
+    <!--PERMISSIONS WE NEED SMS-->
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+
+    <!--PERMISSIONS WE NEED NETWORK-->
+    <!--this is a *Normal* permission-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--**********************************-->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Ex9">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ADDED IN LAB9 -->
+        <!-- STATIC REGISTRATION: SMS Received -->
+        <!-- We will receive the SMS even when we are not inside the application -->
+        <receiver android:name=".SMSBroadcastReceiver" android:exported="true">
+            <!-- intent filter - to state the event we wish to subscribe to -->
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+        <!-- ****************** -->
+    </application>
+
+</manifest>
